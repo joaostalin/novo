@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexandre de Moraes | Portal Tecnológico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#04B4AE',
+                        justice: '#012169',
+                        accent: '#FF5722',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Notificação de carregamento de imagem externa -->
+    <div id="image-alert" class="fixed top-4 left-4 right-4 bg-yellow-50 dark:bg-yellow-900/70 border-l-4 border-yellow-400 p-4 z-50 rounded-md shadow-lg">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3 flex-1">
+                <p class="text-sm text-yellow-700 dark:text-yellow-200">
+                    Tentando carregar imagem da Revista Oeste. Se solicitado, permita recursos adicionais para visualizar o conteúdo completo.
+                </p>
+            </div>
+            <button onclick="document.getElementById('image-alert').style.display='none'" class="ml-4">
+                <svg class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header class="bg-white dark:bg-gray-800 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center mb-3 sm:mb-0">
+                <div class="h-10 w-10 rounded-md bg-justice text-white flex items-center justify-center text-xl font-bold mr-3">AM</div>
+                <h1 class="text-2xl font-bold tracking-tight">
+                    Alexandre de Moraes
+                    <span class="text-sm text-secondary block sm:inline sm:ml-2">Portal Tecnológico</span>
+                </h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#perfil" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Perfil</a></li>
+                    <li><a href="#ferramentas" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Ferramentas</a></li>
+                    <li><a href="#timeline" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Timeline</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Seção Hero -->
+        <section class="bg-gradient-to-r from-justice to-primary py-16 text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute right-0 bottom-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+                <div class="absolute left-0 top-0 w-96 h-96 bg-accent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+            </div>
+            <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Ministro Alexandre de Moraes</h2>
+                    <p class="text-xl mb-8 opacity-90">Monitoramento e análise tecnológica das decisões e impactos na justiça brasileira</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-white text-justice font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition-colors">
+                            Explorar Dados
+                        </button>
+                        <button class="bg-transparent border border-white text-white font-medium px-6 py-3 rounded-md hover:bg-white/10 transition-colors">
+                            Decisões Recentes
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center relative">
+                    <!-- Placeholder para imagem com fallback -->
+                    <div class="w-80 h-80 bg-white/10 backdrop-blur-sm rounded-full overflow-hidden relative flex items-center justify-center border-4 border-white/20">
+                        <!-- Tentativas múltiplas de carregar a imagem -->
+                        <img 
+                            id="profile-image"
+                            src="https://veja.abril.com.br/wp-content/uploads/2022/01/ALEXANDRE-DE-MORAES-4.jpg"
+                            alt="Alexandre de Moraes"
+                            class="object-cover w-full h-full"
+                            style="display: none;"
+                            onload="this.style.display='block'; document.getElementById('image-placeholder').style.display='none';"
+                            onerror="this.onerror=null; this.src='https://veja.abril.com.br/wp-content/uploads/2023/01/Alexandre-de-Moraes-1-1.jpg';"
+                        >
+                        <!-- Placeholder caso a imagem não carregue -->
+                        <div id="image-placeholder" class="absolute inset-0 flex flex-col items-center justify-center">
+                            <svg class="w-24 h-24 text-white/50" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-white/70 text-sm mt-4">Alexandre de Moraes</p>
+                            <p class="text-white/50 text-xs mt-1">Ministro do STF</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Elementos decorativos -->
+                    <div class="absolute -right-10 top-10 w-20 h-20 bg-secondary opacity-40 rounded-full blur-xl animate-pulse-slow"></div>
+                    <div class="absolute -left-5 bottom-5 w-16 h-16 bg-accent opacity-50 rounded-full blur-xl animate-pulse-slow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estatísticas e indicadores -->
+        <section class="py-10 bg-white dark:bg-gray-800 shadow-md">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Indicador 1 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-file-text"></i>
+                            </div>
+                            <h3 class="font-semibold">Decisões Monocráticas</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">423</span>
+                            <span class="ml-2 text-sm text-green-500 flex items-center">
+                                <i class="bi bi-arrow-up"></i> 12%
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Últimos 12 meses</p>
+                    </div>
+
+                    <!-- Indicador 2 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                            <h3 class="font-semibold">Redes Sociais Monitoradas</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">17</span>
+                            <span class="ml-2 text-sm text-green-500 flex items-center">
+                                <i class="bi bi-arrow-up"></i> 5
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Plataformas diferentes</p>
+                    </div>
+
+                    <!-- Indicador 3 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-person-x"></i>
+                            </div>
+                            <h3 class="font-semibold">Perfis Bloqueados</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">289</span>
+                            <span class="ml-2 text-sm text-red-500 flex items-center">
+                                <i class="bi bi-arrow-up"></i> 34%
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Nas redes sociais</p>
+                    </div>
+
+                    <!-- Indicador 4 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-shield-exclamation"></i>
+                            </div>
+                            <h3 class="font-semibold">Ameaças à Democracia</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">147</span>
+                            <span class="ml-2 text-sm text-red-500 flex items-center">
+                                <i class="bi bi-arrow-down"></i> 5%
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Investigações ativas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ferramentas tecnológicas -->
+        <section id="ferramentas" class="py-16 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Ferramentas Avançadas</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Sistema integrado de monitoramento e análise de decisões judiciais com tecnologia de ponta
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Ferramenta 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+                        <div class="h-3 bg-blue-500"></div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+                                <i class="bi bi-graph-up text-blue-500 text-2xl group-hover:animate-float"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Monitoramento de Redes</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Sistema de vigilância em tempo real de conteúdos nas redes sociais com alertas automáticos para discursos antidemocráticos.
+                            </p>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 font-medium flex items-center transition-colors">
+                                Acessar ferramenta
+                                <i class="bi bi-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Ferramenta 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+                        <div class="h-3 bg-purple-500"></div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                                <i class="bi bi-search text-purple-500 text-2xl group-hover:animate-float"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Análise de Jurisprudência</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Algoritmo de IA para identificar padrões e tendências nas decisões do STF e comparar com casos semelhantes.
+                            </p>
+                            <a href="#" class="text-purple-500 hover:text-purple-700 dark:hover:text-purple-400 font-medium flex items-center transition-colors">
+                                Explorar análises
+                                <i class="bi bi-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Ferramenta 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+                        <div class="h-3 bg-green-500"></div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-green-50 dark:bg-green-900/30 flex items-center justify-center mb-4">
+                                <i class="bi bi-lightning-charge text-green-500 text-2xl group-hover:animate-float"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Bloqueio Instantâneo</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Plataforma que permite a remoção rápida de conteúdos e bloqueio de contas em múltiplas redes com apenas um clique.
+                            </p>
+                            <a href="#" class="text-green-500 hover:text-green-700 dark:hover:text-green-400 font-medium flex items-center transition-colors">
+                                Verificar status
+                                <i class="bi bi-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de eventos -->
+        <section id="timeline" class="py-16 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Timeline de Decisões</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Cronologia das principais decisões e ações contra ameaças à democracia
+                    </p>
+                </div>
+
+                <div class="max-w-3xl mx-auto">
+                    <!-- Evento 1 -->
+                    <div class="flex mb-8">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">08/01/2023</span>
+                                <span class="text-xs bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 px-2 py-1 rounded-full">Crítico</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Determina prisão de envolvidos em atos antidemocráticos</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Após os ataques às sedes dos Três Poderes, o ministro determinou a prisão preventiva de dezenas de suspeitos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 2 -->
+                    <div class="flex mb-8">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">21/04/2022</span>
+                                <span class="text-xs bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded-full">Redes Sociais</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Bloqueio do Telegram</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Decisão de suspender o funcionamento do Telegram no Brasil por descumprimento de ordens judiciais. A plataforma foi reativada após adequações.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 3 -->
+                    <div class="flex mb-8">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">15/10/2021</span>
+                                <span class="text-xs bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 px-2 py-1 rounded-full">Jurisprudência</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Inquérito das Fake News</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Ampliação do escopo do inquérito para investigar disseminação de notícias falsas e ataques à instituições democráticas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 4 -->
+                    <div class="flex">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice opacity-0"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">28/08/2020</span>
+                                <span class="text-xs bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-2 py-1 rounded-full">Tecnologia</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Sistema de monitoramento online</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Implementação de sistema integrado para monitoramento de conteúdos anti-democráticos em múltiplas plataformas digitais.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perfil técnico -->
+        <section id="perfil" class="py-16 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">Perfil Técnico</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="md:col-span-2">
+                            <h3 class="text-xl font-semibold mb-4">Alexandre de Moraes</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Ministro do Supremo Tribunal Federal desde março de 2017, Alexandre de Moraes tem se destacado pela atuação no combate à desinformação e na proteção das instituições democráticas através de instrumentos tecnológicos avançados.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Pioneiro na implementação de monitoramento digital de ameaças à democracia, tem desenvolvido jurisprudência sobre os limites da liberdade de expressão no ambiente digital e utilização de tecnologia para garantir o cumprimento de decisões judiciais em plataformas digitais.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <div>
+                                    <h4 class="font-medium mb-2">Formação</h4>
+                                    <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                                        <li>• Doutor em Direito do Estado (USP)</li>
+                                        <li>• Livre-docente em Direito Constitucional</li>
+                                        <li>• Professor da Faculdade de Direito da USP</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-2">Cargos Anteriores</h4>
+                                    <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                                        <li>• Ministro da Justiça (2016-2017)</li>
+                                        <li>• Secretário de Segurança Pública de SP</li>
+                                        <li>• Membro do Conselho Nacional de Justiça</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+                                <h4 class="font-semibold mb-4 flex items-center">
+                                    <i class="bi bi-graph-up-arrow mr-2 text-justice"></i>
+                                    Métricas de Atuação
+                                </h4>
+                                
+                                <!-- Métrica 1 -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Decisões Tecnológicas</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">87%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 87%"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Métrica 2 -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Combate à Desinformação</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">92%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Métrica 3 -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Efetividade Jurisdicional</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">78%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Métrica 4 -->
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Inovação Jurídica</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">95%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="h-8 w-8 rounded-md bg-white text-justice flex items-center justify-center text-xl font-bold mr-3">AM</div>
+                        <h3 class="text-xl font-bold">Portal Tecnológico</h3>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Esta página é uma simulação fictícia criada apenas para fins educacionais e de demonstração de habilidades técnicas de desenvolvimento web.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Portal</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Início</a></li>
+                            <li><a href="#perfil" class="hover:text-white transition-colors">Perfil</a></li>
+                            <li><a href="#ferramentas" class="hover:text-white transition-colors">Ferramentas</a></li>
+                            <li><a href="#timeline" class="hover:text-white transition-colors">Timeline</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Recursos</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Análise de Dados</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Jurisprudência</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Monitoramento</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Notificações</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Termos de Uso</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Privacidade</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500 text-sm">
+                © 2023 Portal Tecnológico Alexandre de Moraes. Site fictício para fins educacionais.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-hide image alert after 5 seconds
+        setTimeout(() => {
+            const alert = document.getElementById('image-alert');
+            if (alert) {
+                alert.style.opacity = '0';
+                alert.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 5000);
+        
+        // Check if profile image loads successfully
+        document.addEventListener('DOMContentLoaded', () => {
+            const img = document.getElementById('profile-image');
+            if (img) {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    document.getElementById('image-placeholder').style.display = 'flex';
+                };
+                img.onload = function() {
+                    this.style.display = 'block';
+                    document.getElementById('image-placeholder').style.display = 'none';
+                    
+                    // Hide the alert sooner if image loads
+                    setTimeout(() => {
+                        const alert = document.getElementById('image-alert');
+                        if (alert) {
+                            alert.style.opacity = '0';
+                            alert.style.transition = 'opacity 0.5s ease';
+                            setTimeout(() => {
+                                alert.style.display = 'none';
+                            }, 500);
+                        }
+                    }, 1000);
+                };
+                
+                // Cascata de tentativas de URLs diferentes para aumentar a chance de sucesso
+                // Vamos tentar várias URLs de múltiplas fontes que possam conter a imagem do Alexandre de Moraes
+                const possibleUrls = [
+                    // Novas URLs da Revista Oeste
+                    "https://revistaoeste.com/wp-content/uploads/2023/07/Alexandre-de-Moraes-alexandre-o-supremo.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2023/01/Alexandre-de-Moraes.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2022/04/Alexandre-de-Moraes-1.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2022/08/Alexandre-de-Moraes-STF.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2022/12/Alexandre-de-Moraes-capa.jpg",
+                    
+                    // URLs anteriores da Veja
+                    "https://veja.abril.com.br/wp-content/uploads/2022/01/ALEXANDRE-DE-MORAES-4.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2023/01/Alexandre-de-Moraes-1-1.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2022/01/ALEXANDRE-DE-MORAES.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2023/09/STF06.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2023/09/STF-ALEXANDRE-DE-MORAES-2022-8552.jpg"
+                ];
+                
+                let currentUrlIndex = 0;
+                
+                function tryNextImage() {
+                    if (currentUrlIndex < possibleUrls.length) {
+                        img.src = possibleUrls[currentUrlIndex];
+                        currentUrlIndex++;<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexandre de Moraes | Portal Tecnológico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#04B4AE',
+                        justice: '#012169',
+                        accent: '#FF5722',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Notificação de carregamento de imagem externa -->
+    <div id="image-alert" class="fixed top-4 left-4 right-4 bg-yellow-50 dark:bg-yellow-900/70 border-l-4 border-yellow-400 p-4 z-50 rounded-md shadow-lg">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3 flex-1">
+                <p class="text-sm text-yellow-700 dark:text-yellow-200">
+                    Tentando carregar imagem da Revista Oeste. Se solicitado, permita recursos adicionais para visualizar o conteúdo completo.
+                </p>
+            </div>
+            <button onclick="document.getElementById('image-alert').style.display='none'" class="ml-4">
+                <svg class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header class="bg-white dark:bg-gray-800 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center mb-3 sm:mb-0">
+                <div class="h-10 w-10 rounded-md bg-justice text-white flex items-center justify-center text-xl font-bold mr-3">AM</div>
+                <h1 class="text-2xl font-bold tracking-tight">
+                    Alexandre de Moraes
+                    <span class="text-sm text-secondary block sm:inline sm:ml-2">Portal Tecnológico</span>
+                </h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#perfil" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Perfil</a></li>
+                    <li><a href="#ferramentas" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Ferramentas</a></li>
+                    <li><a href="#timeline" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Timeline</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Seção Hero -->
+        <section class="bg-gradient-to-r from-justice to-primary py-16 text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute right-0 bottom-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+                <div class="absolute left-0 top-0 w-96 h-96 bg-accent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+            </div>
+            <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Ministro Alexandre de Moraes</h2>
+                    <p class="text-xl mb-8 opacity-90">Monitoramento e análise tecnológica das decisões e impactos na justiça brasileira</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-white text-justice font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition-colors">
+                            Explorar Dados
+                        </button>
+                        <button class="bg-transparent border border-white text-white font-medium px-6 py-3 rounded-md hover:bg-white/10 transition-colors">
+                            Decisões Recentes
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center relative">
+                    <!-- Placeholder para imagem com fallback -->
+                    <div class="w-80 h-80 bg-white/10 backdrop-blur-sm rounded-full overflow-hidden relative flex items-center justify-center border-4 border-white/20">
+                        <!-- Tentativas múltiplas de carregar a imagem -->
+                        <img 
+                            id="profile-image"
+                            src="https://veja.abril.com.br/wp-content/uploads/2022/01/ALEXANDRE-DE-MORAES-4.jpg"
+                            alt="Alexandre de Moraes"
+                            class="object-cover w-full h-full"
+                            style="display: none;"
+                            onload="this.style.display='block'; document.getElementById('image-placeholder').style.display='none';"
+                            onerror="this.onerror=null; this.src='https://veja.abril.com.br/wp-content/uploads/2023/01/Alexandre-de-Moraes-1-1.jpg';"
+                        >
+                        <!-- Placeholder caso a imagem não carregue -->
+                        <div id="image-placeholder" class="absolute inset-0 flex flex-col items-center justify-center">
+                            <svg class="w-24 h-24 text-white/50" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-white/70 text-sm mt-4">Alexandre de Moraes</p>
+                            <p class="text-white/50 text-xs mt-1">Ministro do STF</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Elementos decorativos -->
+                    <div class="absolute -right-10 top-10 w-20 h-20 bg-secondary opacity-40 rounded-full blur-xl animate-pulse-slow"></div>
+                    <div class="absolute -left-5 bottom-5 w-16 h-16 bg-accent opacity-50 rounded-full blur-xl animate-pulse-slow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estatísticas e indicadores -->
+        <section class="py-10 bg-white dark:bg-gray-800 shadow-md">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Indicador 1 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-file-text"></i>
+                            </div>
+                            <h3 class="font-semibold">Decisões Monocráticas</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">423</span>
+                            <span class="ml-2 text-sm text-green-500 flex items-center">
+                                <i class="bi bi-arrow-up"></i> 12%
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Últimos 12 meses</p>
+                    </div>
+
+                    <!-- Indicador 2 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                            <h3 class="font-semibold">Redes Sociais Monitoradas</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">17</span>
+                            <span class="ml-2 text-sm text-green-500 flex items-center">
+                                <i class="bi bi-arrow-up"></i> 5
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Plataformas diferentes</p>
+                    </div>
+
+                    <!-- Indicador 3 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-person-x"></i>
+                            </div>
+                            <h3 class="font-semibold">Perfis Bloqueados</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">289</span>
+                            <span class="ml-2 text-sm text-red-500 flex items-center">
+                                <i class="bi bi-arrow-up"></i> 34%
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Nas redes sociais</p>
+                    </div>
+
+                    <!-- Indicador 4 -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-md bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 flex items-center justify-center mr-3">
+                                <i class="bi bi-shield-exclamation"></i>
+                            </div>
+                            <h3 class="font-semibold">Ameaças à Democracia</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-3xl font-bold">147</span>
+                            <span class="ml-2 text-sm text-red-500 flex items-center">
+                                <i class="bi bi-arrow-down"></i> 5%
+                            </span>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Investigações ativas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ferramentas tecnológicas -->
+        <section id="ferramentas" class="py-16 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Ferramentas Avançadas</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Sistema integrado de monitoramento e análise de decisões judiciais com tecnologia de ponta
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Ferramenta 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+                        <div class="h-3 bg-blue-500"></div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+                                <i class="bi bi-graph-up text-blue-500 text-2xl group-hover:animate-float"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Monitoramento de Redes</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Sistema de vigilância em tempo real de conteúdos nas redes sociais com alertas automáticos para discursos antidemocráticos.
+                            </p>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 font-medium flex items-center transition-colors">
+                                Acessar ferramenta
+                                <i class="bi bi-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Ferramenta 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+                        <div class="h-3 bg-purple-500"></div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                                <i class="bi bi-search text-purple-500 text-2xl group-hover:animate-float"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Análise de Jurisprudência</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Algoritmo de IA para identificar padrões e tendências nas decisões do STF e comparar com casos semelhantes.
+                            </p>
+                            <a href="#" class="text-purple-500 hover:text-purple-700 dark:hover:text-purple-400 font-medium flex items-center transition-colors">
+                                Explorar análises
+                                <i class="bi bi-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Ferramenta 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+                        <div class="h-3 bg-green-500"></div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-green-50 dark:bg-green-900/30 flex items-center justify-center mb-4">
+                                <i class="bi bi-lightning-charge text-green-500 text-2xl group-hover:animate-float"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Bloqueio Instantâneo</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Plataforma que permite a remoção rápida de conteúdos e bloqueio de contas em múltiplas redes com apenas um clique.
+                            </p>
+                            <a href="#" class="text-green-500 hover:text-green-700 dark:hover:text-green-400 font-medium flex items-center transition-colors">
+                                Verificar status
+                                <i class="bi bi-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline de eventos -->
+        <section id="timeline" class="py-16 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Timeline de Decisões</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Cronologia das principais decisões e ações contra ameaças à democracia
+                    </p>
+                </div>
+
+                <div class="max-w-3xl mx-auto">
+                    <!-- Evento 1 -->
+                    <div class="flex mb-8">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">08/01/2023</span>
+                                <span class="text-xs bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 px-2 py-1 rounded-full">Crítico</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Determina prisão de envolvidos em atos antidemocráticos</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Após os ataques às sedes dos Três Poderes, o ministro determinou a prisão preventiva de dezenas de suspeitos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 2 -->
+                    <div class="flex mb-8">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">21/04/2022</span>
+                                <span class="text-xs bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded-full">Redes Sociais</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Bloqueio do Telegram</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Decisão de suspender o funcionamento do Telegram no Brasil por descumprimento de ordens judiciais. A plataforma foi reativada após adequações.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 3 -->
+                    <div class="flex mb-8">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">15/10/2021</span>
+                                <span class="text-xs bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 px-2 py-1 rounded-full">Jurisprudência</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Inquérito das Fake News</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Ampliação do escopo do inquérito para investigar disseminação de notícias falsas e ataques à instituições democráticas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 4 -->
+                    <div class="flex">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="rounded-full w-4 h-4 bg-justice"></div>
+                            <div class="h-full w-0.5 bg-justice opacity-0"></div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-sm flex-1">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">28/08/2020</span>
+                                <span class="text-xs bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-2 py-1 rounded-full">Tecnologia</span>
+                            </div>
+                            <h3 class="font-semibold mb-2">Sistema de monitoramento online</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Implementação de sistema integrado para monitoramento de conteúdos anti-democráticos em múltiplas plataformas digitais.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perfil técnico -->
+        <section id="perfil" class="py-16 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">Perfil Técnico</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="md:col-span-2">
+                            <h3 class="text-xl font-semibold mb-4">Alexandre de Moraes</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Ministro do Supremo Tribunal Federal desde março de 2017, Alexandre de Moraes tem se destacado pela atuação no combate à desinformação e na proteção das instituições democráticas através de instrumentos tecnológicos avançados.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Pioneiro na implementação de monitoramento digital de ameaças à democracia, tem desenvolvido jurisprudência sobre os limites da liberdade de expressão no ambiente digital e utilização de tecnologia para garantir o cumprimento de decisões judiciais em plataformas digitais.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <div>
+                                    <h4 class="font-medium mb-2">Formação</h4>
+                                    <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                                        <li>• Doutor em Direito do Estado (USP)</li>
+                                        <li>• Livre-docente em Direito Constitucional</li>
+                                        <li>• Professor da Faculdade de Direito da USP</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-2">Cargos Anteriores</h4>
+                                    <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                                        <li>• Ministro da Justiça (2016-2017)</li>
+                                        <li>• Secretário de Segurança Pública de SP</li>
+                                        <li>• Membro do Conselho Nacional de Justiça</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+                                <h4 class="font-semibold mb-4 flex items-center">
+                                    <i class="bi bi-graph-up-arrow mr-2 text-justice"></i>
+                                    Métricas de Atuação
+                                </h4>
+                                
+                                <!-- Métrica 1 -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Decisões Tecnológicas</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">87%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 87%"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Métrica 2 -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Combate à Desinformação</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">92%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Métrica 3 -->
+                                <div class="mb-4">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Efetividade Jurisdicional</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">78%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Métrica 4 -->
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium">Inovação Jurídica</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">95%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                        <div class="h-2 bg-justice rounded-full" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="h-8 w-8 rounded-md bg-white text-justice flex items-center justify-center text-xl font-bold mr-3">AM</div>
+                        <h3 class="text-xl font-bold">Portal Tecnológico</h3>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Esta página é uma simulação fictícia criada apenas para fins educacionais e de demonstração de habilidades técnicas de desenvolvimento web.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Portal</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Início</a></li>
+                            <li><a href="#perfil" class="hover:text-white transition-colors">Perfil</a></li>
+                            <li><a href="#ferramentas" class="hover:text-white transition-colors">Ferramentas</a></li>
+                            <li><a href="#timeline" class="hover:text-white transition-colors">Timeline</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Recursos</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Análise de Dados</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Jurisprudência</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Monitoramento</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Notificações</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Termos de Uso</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Privacidade</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500 text-sm">
+                © 2023 Portal Tecnológico Alexandre de Moraes. Site fictício para fins educacionais.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-hide image alert after 5 seconds
+        setTimeout(() => {
+            const alert = document.getElementById('image-alert');
+            if (alert) {
+                alert.style.opacity = '0';
+                alert.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 5000);
+        
+        // Check if profile image loads successfully
+        document.addEventListener('DOMContentLoaded', () => {
+            const img = document.getElementById('profile-image');
+            if (img) {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    document.getElementById('image-placeholder').style.display = 'flex';
+                };
+                img.onload = function() {
+                    this.style.display = 'block';
+                    document.getElementById('image-placeholder').style.display = 'none';
+                    
+                    // Hide the alert sooner if image loads
+                    setTimeout(() => {
+                        const alert = document.getElementById('image-alert');
+                        if (alert) {
+                            alert.style.opacity = '0';
+                            alert.style.transition = 'opacity 0.5s ease';
+                            setTimeout(() => {
+                                alert.style.display = 'none';
+                            }, 500);
+                        }
+                    }, 1000);
+                };
+                
+                // Cascata de tentativas de URLs diferentes para aumentar a chance de sucesso
+                // Vamos tentar várias URLs de múltiplas fontes que possam conter a imagem do Alexandre de Moraes
+                const possibleUrls = [
+                    // Novas URLs da Revista Oeste
+                    "https://revistaoeste.com/wp-content/uploads/2023/07/Alexandre-de-Moraes-alexandre-o-supremo.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2023/01/Alexandre-de-Moraes.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2022/04/Alexandre-de-Moraes-1.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2022/08/Alexandre-de-Moraes-STF.jpg",
+                    "https://revistaoeste.com/wp-content/uploads/2022/12/Alexandre-de-Moraes-capa.jpg",
+                    
+                    // URLs anteriores da Veja
+                    "https://veja.abril.com.br/wp-content/uploads/2022/01/ALEXANDRE-DE-MORAES-4.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2023/01/Alexandre-de-Moraes-1-1.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2022/01/ALEXANDRE-DE-MORAES.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2023/09/STF06.jpg",
+                    "https://veja.abril.com.br/wp-content/uploads/2023/09/STF-ALEXANDRE-DE-MORAES-2022-8552.jpg"
+                ];
+                
+                let currentUrlIndex = 0;
+                
+                function tryNextImage() {
+                    if (currentUrlIndex < possibleUrls.length) {
+                        img.src = possibleUrls[currentUrlIndex];
+                        currentUrlIndex++;
+                    } else {
+                        // Se todas as tentativas falharem, mostrar o placeholder
+                        img.style.display = 'none';
+                        document.getElementById('image-placeholder').style.display = 'flex';
+                    }
+                }
+                
+                // Configure o manipulador de erros para tentar a próxima URL
+                img.onerror = tryNextImage;
+                
+                // Comece com a primeira URL
+                tryNextImage();
+            }
+        });
+    </script>
+</body>
+</html>e';
+                        document.getElementById('image-placeholder').style.display = 'flex';
+                    }
+                }
+                
+                // Configure o manipulador de erros para tentar a próxima URL
+                img.onerror = tryNextImage;
+                
+                // Comece com a primeira URL
+                tryNextImage();
+            }
+        });
+    </script>
+</body>
+</html>
